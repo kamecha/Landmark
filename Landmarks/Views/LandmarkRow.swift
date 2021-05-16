@@ -11,8 +11,8 @@ struct LandmarkRow: View {
     var body: some View {
         HStack {
            Image("turtlerock")
-            .resizable()
-            .frame(width: 50, height: 50)
+                .resizable()
+                .frame(width: 50, height: 50)
             Text("Turtle Rock")
             Spacer()
         }
