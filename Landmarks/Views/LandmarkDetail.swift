@@ -1,28 +1,51 @@
 //
-//  LandmarkRow.swift
+//  ContentView.swift
 //  Landmarks
 //
-//  Created by masaki kameyama on 2021/05/16.
+//  Created by masaki kameyama on 2021/05/09.
 //
 
 import SwiftUI
 
-struct LandmarkRow: View {
+struct LandmarkDetail: View {
     let landmark: Landmark
     var body: some View {
-        HStack {
-            Image(landmark.imageName)
-                .resizable()
-                .frame(width: 50, height: 50)
-            Text(landmark.name)
+        VStack{
+            MapView(coordinate: landmark.coordinates)
+                .ignoresSafeArea(edges: .top)
+                .frame(height: 300)
+            
+            CircleImage(imageName: landmark.imageName)
+                .offset(y:-130)
+                .padding(.bottom, -130)
+            
+            VStack(alignment: .leading){
+                Text(landmark.name)
+                    .font(.title)
+                HStack{
+                    Text(landmark.city)
+                    Spacer()
+                    Text(landmark.state)
+                }
+                .font(.subheadline)
+                .foregroundColor(.secondary)
+                
+                Divider()
+                
+                Text("About")
+                    .font(.title2)
+                Text(landmark.description)
+            }
+            .padding()
+            
             Spacer()
         }
     }
 }
 
-struct LandmarkRow_Previews: PreviewProvider {
+struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        LandmarkRow(
+        LandmarkDetail(
             landmark: Landmark(
                 id: 1001,
                 name: "Turtle Rock",
